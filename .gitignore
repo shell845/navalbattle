@@ -1,2 +1,5 @@
-*.iml
-/out
+# ignore project files
+.iml
+bin/
+out/
+.idea/
