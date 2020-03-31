@@ -1,5 +1,4 @@
-import java.awt.*;
-import java.util.concurrent.TimeUnit;
+package com.shell.navalbattle;
 
 /**
  * @author YC 03/29/2020
@@ -7,17 +6,16 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        NavalFrame f = new NavalFrame("Naval Battle");
-        f.setVisible(true);
+        NavalFrame.MAIN_FRAME.setVisible(true);
 
         while (true) {
             try {
                 //TimeUnit.MICROSECONDS.sleep(30);
-                Thread.sleep(30);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            f.repaint();
+            NavalFrame.MAIN_FRAME.repaint();
         }
     }
 }

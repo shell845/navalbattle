@@ -1,5 +1,7 @@
 # ignore project files
 .iml
+*.iml
 bin/
 out/
 .idea/
+src/images/backup/
