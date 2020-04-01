@@ -8,6 +8,8 @@ public class Main {
     public static void main(String[] args) {
         NavalFrame.MAIN_FRAME.setVisible(true);
 
+        new Thread(()->new Audio("audios/background.wav").loop()).start();
+
         while (true) {
             try {
                 //TimeUnit.MICROSECONDS.sleep(30);
