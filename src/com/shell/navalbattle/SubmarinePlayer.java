@@ -146,9 +146,10 @@ public class SubmarinePlayer implements Submarine {
             e.printStackTrace();
         } */
         WeaponModel model = null;
-        if (random.nextInt(100) > 80) model = new DoubleWeaponModel();
+        if (random.nextInt(100) > 65) model = new DoubleWeaponModel();
         else model = new DefaultWeaponModel();
         model.shoot(this);
+        NavalFrame.MAIN_FRAME.defaultWeaponNum--;
     }
 
     private void setDirection() {

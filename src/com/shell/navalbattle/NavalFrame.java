@@ -27,6 +27,8 @@ public class NavalFrame extends Frame {
     private ArrayList<Explode> explodes;
     private int enemyNums = Integer.parseInt(PropertyMgr.getConfig("initEnemyNum"));
     public int hit;
+    private int hitTOWin = Integer.parseInt(PropertyMgr.getConfig("HitTOWin"));
+    public int defaultWeaponNum = Integer.parseInt(PropertyMgr.getConfig("defaultWeaponNum"));
 
     private static Random random = new Random();
 
@@ -52,7 +54,7 @@ public class NavalFrame extends Frame {
         explodes = new ArrayList<>();
 
         for (int i = 0; i < enemyNums; i++) {
-            addEnemy(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
+            addEnemy(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X * 2, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
         }
 
     }
@@ -61,8 +63,23 @@ public class NavalFrame extends Frame {
     public void paint(Graphics g) {
         // paint
         try {
+            if (hit >= hitTOWin && defaultWeaponNum >= 0) {
+                g.setColor(Color.magenta);
+                g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
+                g.drawString(PropertyMgr.getConfig("win"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+                return;
+            }
+
+            if (defaultWeaponNum < 0 && hit < hitTOWin ) {
+                g.setColor(Color.red);
+                g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
+                g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+                return;
+            }
+
             g.setColor(Color.magenta);
             g.drawString(hit + " hits", FRAME_LOCATION_X + MARGIN_X, FRAME_LOCATION_Y + MARGIN_Y);
+            g.drawString(defaultWeaponNum + " bubble left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.3));
 
             mySubmarine.paint(g);
 
@@ -89,10 +106,10 @@ public class NavalFrame extends Frame {
         weapons.removeIf(w -> !w.isAlive());
         explodes.removeIf(e -> !e.isAlive());
         // randomly add enemy
-        if (random.nextInt(100) > 95) {
+        if (random.nextInt(100) > 94) {
             int n = random.nextInt(enemyNums);
             for (int i = 0; i < n; i++) {
-                addEnemy(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X * 3, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
+                addEnemy(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X * 2, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
             }
         }
     }
