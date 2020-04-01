@@ -13,8 +13,8 @@ public class Weapon {
     private Groups group;
     private Directions dir;
     private boolean alive;
-    public static final int SPEED = 15;
     private BufferedImage currImage;
+    private int speed = Integer.parseInt(PropertyMgr.getConfig("defaultSpeed"));
 
     public Weapon (int x, int y, Groups g) {
         this.xPos = x;
@@ -51,6 +51,14 @@ public class Weapon {
         this.alive = status;
     }
 
+    public void setSpeed(int i) {
+        this.speed = i;
+    }
+
+    public void setImage(BufferedImage img) {
+        this.currImage = img;
+    }
+
     public void collideWithShip(SubmarineEnemy submarine) {
         if (!submarine.isAlive() || this.group == submarine.getGroup()) return;
 
@@ -76,10 +84,10 @@ public class Weapon {
         // move when alive
         switch (this.dir) {
             case L:
-                this.xPos -= SPEED;
+                this.xPos -= speed;
                 break;
             case R:
-                this.xPos += SPEED;
+                this.xPos += speed;
                 break;
 //            case U:
 //                this.yPos += SPEED;

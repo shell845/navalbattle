@@ -9,7 +9,7 @@ import java.util.Random;
  * @author YC 03/29/2020
  */
 
-public class SubmarineEnemy {
+public class SubmarineEnemy implements Submarine {
     public static final int SPEED = 10;
     public static final int TOP_MARGIN = 20;
     private int xPos, yPos;

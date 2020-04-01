@@ -12,15 +12,20 @@ import java.util.Random;
  */
 
 public class NavalFrame extends Frame {
-    public static final NavalFrame MAIN_FRAME = new NavalFrame("Mini Submarine");
+    public static final NavalFrame MAIN_FRAME = new NavalFrame(PropertyMgr.getConfig("Title"));
 
-    public static final int FRAME_LOCATION_X = 0, FRAME_LOCATION_Y = 0;
-    public static final int FRAME_WIDTH = 800, FRAME_HEIGHT = 600;
+    public static final int FRAME_LOCATION_X = 0;//Integer.parseInt(PropertyMgr.getConfig("FrameLocationX"));
+    public static final int FRAME_LOCATION_Y = 0; //Integer.parseInt(PropertyMgr.getConfig("FrameLocationY"));
+    public static final int FRAME_WIDTH = 800; // Integer.parseInt(PropertyMgr.getConfig("FrameWidth"));
+    public static final int FRAME_HEIGHT = 600; // Integer.parseInt(PropertyMgr.getConfig("FrameHeight"));
+    public static final int MARGIN_X = Integer.parseInt(PropertyMgr.getConfig("MarginX"));
+    public static final int MARGIN_Y = Integer.parseInt(PropertyMgr.getConfig("MarginY"));
 
     private SubmarinePlayer mySubmarine;
     private ArrayList<SubmarineEnemy> enemies;
     private ArrayList<Weapon> weapons;
     private ArrayList<Explode> explodes;
+    private int enemyNums = Integer.parseInt(PropertyMgr.getConfig("initEnemyNum"));
     public int hit;
 
     private static Random random = new Random();
@@ -37,15 +42,17 @@ public class NavalFrame extends Frame {
     }
 
     private void initiateFrame() {
-        mySubmarine = new SubmarinePlayer(50, 50, Directions.R);
+        int initPosX = Integer.parseInt(PropertyMgr.getConfig("initPosX"));
+        int initPosY = Integer.parseInt(PropertyMgr.getConfig("initPosY"));
+
+        mySubmarine = new SubmarinePlayer(initPosX, initPosY, Directions.R);
 
         weapons = new ArrayList<>();
         enemies = new ArrayList<>();
         explodes = new ArrayList<>();
 
-
-        for (int i = 0; i < 3; i++) {
-            addEnemy(new SubmarineEnemy(FRAME_WIDTH, FRAME_HEIGHT * i / 4, Directions.L));
+        for (int i = 0; i < enemyNums; i++) {
+            addEnemy(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
         }
 
     }
@@ -55,7 +62,7 @@ public class NavalFrame extends Frame {
         // paint
         try {
             g.setColor(Color.magenta);
-            g.drawString(hit + " hits", FRAME_LOCATION_X + 10, FRAME_LOCATION_Y + 40);
+            g.drawString(hit + " hits", FRAME_LOCATION_X + MARGIN_X, FRAME_LOCATION_Y + MARGIN_Y);
 
             mySubmarine.paint(g);
 
@@ -82,11 +89,10 @@ public class NavalFrame extends Frame {
         weapons.removeIf(w -> !w.isAlive());
         explodes.removeIf(e -> !e.isAlive());
         // randomly add enemy
-
-        if (random.nextInt(100) > 90) {
-            int n = random.nextInt(2);
+        if (random.nextInt(100) > 95) {
+            int n = random.nextInt(enemyNums);
             for (int i = 0; i < n; i++) {
-                addEnemy(new SubmarineEnemy(FRAME_WIDTH, FRAME_HEIGHT / (random.nextInt(5) + 1), Directions.L));
+                addEnemy(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X * 3, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
             }
         }
     }
@@ -114,10 +120,10 @@ public class NavalFrame extends Frame {
         Graphics gOffScreen = offScreenImage.getGraphics();
         Color c = gOffScreen.getColor();
         gOffScreen.setColor(Color.cyan);
-        gOffScreen.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        gOffScreen.fillRect(FRAME_LOCATION_X, FRAME_LOCATION_Y, FRAME_WIDTH, FRAME_HEIGHT);
         gOffScreen.setColor(c);
         paint(gOffScreen);
-        g.drawImage(offScreenImage, 0, 0, null);
+        g.drawImage(offScreenImage, FRAME_LOCATION_X, FRAME_LOCATION_Y, null);
     }
 
     // key listener to control ship

@@ -1,15 +1,20 @@
 package com.shell.navalbattle;
 
+import com.shell.navalbattle.Model.DefaultWeaponModel;
+import com.shell.navalbattle.Model.DoubleWeaponModel;
+import com.shell.navalbattle.Model.WeaponModel;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * @author YC 03/29/2020
  */
 
-public class SubmarinePlayer {
+public class SubmarinePlayer implements Submarine {
     public static final int SPEED = 5;
     public static final int TOP_MARGIN = 20;
     private int xPos, yPos;
@@ -121,14 +126,29 @@ public class SubmarinePlayer {
                 break;
             case KeyEvent.VK_SPACE:
                 shoot();
+//            case KeyEvent.VK_CONTROL:
+//                doubleShoot();
         }
         setDirection();
     }
 
+    private Random random = new Random();
     // create weapon
     private void shoot() {
-        Weapon weapon = new Weapon(this.xPos + currImage.getWidth() / 2, this.yPos, this.group);
-        NavalFrame.MAIN_FRAME.addWeapon(weapon);
+        /*
+        ClassLoader loader = SubmarinePlayer.class.getClassLoader();
+        WeaponModel model = null;
+        String className = PropertyMgr.getConfig("model");
+        try {
+            Class klass = loader.loadClass("com.shell.navalbattle." + className);
+            model = (WeaponModel) (klass.getDeclaredConstructor().newInstance());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } */
+        WeaponModel model = null;
+        if (random.nextInt(100) > 80) model = new DoubleWeaponModel();
+        else model = new DefaultWeaponModel();
+        model.shoot(this);
     }
 
     private void setDirection() {
