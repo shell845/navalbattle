@@ -2,7 +2,7 @@
  * @author YC 04/01/2020
  */
 
-package com.shell.navalbattle;
+package com.shell.navalbattle.utils;
 
 import java.io.IOException;
 import java.util.Properties;

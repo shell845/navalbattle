@@ -5,6 +5,10 @@
 package com.shell.navalbattle.collision;
 
 import com.shell.navalbattle.*;
+import com.shell.navalbattle.gameobjects.AbstractGameObject;
+import com.shell.navalbattle.gameobjects.Explode;
+import com.shell.navalbattle.gameobjects.Groups;
+import com.shell.navalbattle.gameobjects.Submarine;
 
 import java.awt.*;
 

@@ -1,6 +1,7 @@
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
 
-import java.awt.*;
+import com.shell.navalbattle.utils.ResourceMgr;
+
 import java.awt.image.BufferedImage;
 import java.util.Random;
 

@@ -4,7 +4,9 @@
 
 package com.shell.navalbattle.collision;
 
-import com.shell.navalbattle.*;
+import com.shell.navalbattle.gameobjects.AbstractGameObject;
+import com.shell.navalbattle.gameobjects.SeaGrass;
+import com.shell.navalbattle.gameobjects.Weapon;
 
 import java.awt.*;
 

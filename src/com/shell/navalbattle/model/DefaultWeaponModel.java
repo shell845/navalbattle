@@ -5,6 +5,8 @@
 package com.shell.navalbattle.model;
 
 import com.shell.navalbattle.*;
+import com.shell.navalbattle.gameobjects.Submarine;
+import com.shell.navalbattle.gameobjects.Weapon;
 
 public class DefaultWeaponModel implements WeaponModel {
 

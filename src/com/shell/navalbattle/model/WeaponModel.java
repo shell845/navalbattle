@@ -4,7 +4,7 @@
 
 package com.shell.navalbattle.model;
 
-import com.shell.navalbattle.Submarine;
+import com.shell.navalbattle.gameobjects.Submarine;
 
 public interface WeaponModel {
     void shoot(Submarine s);

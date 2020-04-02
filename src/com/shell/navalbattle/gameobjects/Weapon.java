@@ -2,7 +2,11 @@
  * @author YC 03/30/2020
  */
 
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
+
+import com.shell.navalbattle.*;
+import com.shell.navalbattle.utils.PropertyMgr;
+import com.shell.navalbattle.utils.ResourceMgr;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

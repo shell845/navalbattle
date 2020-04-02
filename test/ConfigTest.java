@@ -1,4 +1,4 @@
-import com.shell.navalbattle.PropertyMgr;
+import com.shell.navalbattle.utils.PropertyMgr;
 import org.junit.Test;
 
 import java.io.IOException;

@@ -4,8 +4,8 @@
 
 package com.shell.navalbattle.collision;
 
-import com.shell.navalbattle.AbstractGameObject;
-import com.shell.navalbattle.PropertyMgr;
+import com.shell.navalbattle.gameobjects.AbstractGameObject;
+import com.shell.navalbattle.utils.PropertyMgr;
 
 import java.util.ArrayList;
 

@@ -5,6 +5,7 @@
 package com.shell.navalbattle.collision;
 
 import com.shell.navalbattle.*;
+import com.shell.navalbattle.gameobjects.*;
 
 import java.awt.*;
 

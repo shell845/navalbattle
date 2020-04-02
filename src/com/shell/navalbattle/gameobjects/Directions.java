@@ -1,4 +1,4 @@
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
 
 import java.util.Random;
 

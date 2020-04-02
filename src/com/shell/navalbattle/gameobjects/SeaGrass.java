@@ -2,7 +2,7 @@
  * @author YC 04/02/2020
  */
 
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
 
 public abstract class SeaGrass extends AbstractGameObject {
     public abstract int getPosX();

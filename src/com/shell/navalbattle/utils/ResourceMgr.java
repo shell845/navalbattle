@@ -2,7 +2,7 @@
  * @author YC 03/30/2020
  */
 
-package com.shell.navalbattle;
+package com.shell.navalbattle.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

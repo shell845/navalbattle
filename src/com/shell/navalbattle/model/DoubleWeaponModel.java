@@ -5,6 +5,10 @@
 package com.shell.navalbattle.model;
 
 import com.shell.navalbattle.*;
+import com.shell.navalbattle.gameobjects.Submarine;
+import com.shell.navalbattle.gameobjects.Weapon;
+import com.shell.navalbattle.utils.PropertyMgr;
+import com.shell.navalbattle.utils.ResourceMgr;
 
 public class DoubleWeaponModel implements WeaponModel {
 

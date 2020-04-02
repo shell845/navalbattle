@@ -2,13 +2,16 @@
  * @author YC 04/02/2020
  */
 
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
+
+import com.shell.navalbattle.utils.PropertyMgr;
+import com.shell.navalbattle.utils.ResourceMgr;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class SeaGrassFix extends SeaGrass {
+public class SeaGrassFloating extends SeaGrass {
     private BufferedImage currImage;
     private static final int SPEED = 3;
     private static int START;
@@ -16,13 +19,13 @@ public class SeaGrassFix extends SeaGrass {
     private boolean alive;
     private Groups group;
 
-    public SeaGrassFix() {
-        currImage = ResourceMgr.seagrassFix;
-        xPos = Integer.parseInt(PropertyMgr.getConfig("FrameWidth"));
-        yPos = Integer.parseInt(PropertyMgr.getConfig("FrameHeight")) - currImage.getHeight();
+    public SeaGrassFloating() {
+        currImage = ResourceMgr.seagrassFloat;
+        xPos = Integer.parseInt(PropertyMgr.getConfig("FrameWidth")) / 3;
+        yPos = Integer.parseInt(PropertyMgr.getConfig("FrameHeight")) / 3 ;
         START = xPos;
         alive = true;
-        group = Groups.Neutral;
+        group = Groups.Enemy;
     }
 
     public int getPosX() {
@@ -51,11 +54,10 @@ public class SeaGrassFix extends SeaGrass {
     public void paint(Graphics g) throws IOException {
         g.drawImage(currImage, xPos,
                 yPos, null);
-        move();
     }
 
     private void move() {
-        if (xPos <= - getWidth()) xPos = START;
+        if (xPos <= 0) xPos = START;
         xPos -= SPEED;
     }
 }

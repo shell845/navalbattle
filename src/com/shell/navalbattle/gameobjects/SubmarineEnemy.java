@@ -1,7 +1,7 @@
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
 
+import com.shell.navalbattle.NavalFrame;
 import com.shell.navalbattle.model.DefaultWeaponModel;
-import com.shell.navalbattle.model.DoubleWeaponModel;
 import com.shell.navalbattle.model.WeaponModel;
 
 import java.awt.*;

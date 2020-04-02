@@ -1,9 +1,10 @@
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
+
+import com.shell.navalbattle.utils.ResourceMgr;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * @author YC 03/29/2020

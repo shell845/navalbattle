@@ -2,7 +2,7 @@
  * @author YC 03/31/2020
  */
 
-package com.shell.navalbattle;
+package com.shell.navalbattle.utils;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
 public class Audio {

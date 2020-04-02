@@ -4,7 +4,7 @@
 
 package com.shell.navalbattle.collision;
 
-import com.shell.navalbattle.AbstractGameObject;
+import com.shell.navalbattle.gameobjects.AbstractGameObject;
 
 public interface Collider {
     boolean Collision(AbstractGameObject item1, AbstractGameObject item2);

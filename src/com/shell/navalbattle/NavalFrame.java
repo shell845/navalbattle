@@ -1,6 +1,8 @@
 package com.shell.navalbattle;
 
 import com.shell.navalbattle.collision.CollisionChain;
+import com.shell.navalbattle.gameobjects.*;
+import com.shell.navalbattle.utils.PropertyMgr;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -23,17 +25,17 @@ public class NavalFrame extends Frame {
     public static final int MARGIN_X = Integer.parseInt(PropertyMgr.getConfig("MarginX"));
     public static final int MARGIN_Y = Integer.parseInt(PropertyMgr.getConfig("MarginY"));
 
+    private static Random random = new Random();
+
+    public int defaultWeaponNum = Integer.parseInt(PropertyMgr.getConfig("defaultWeaponNum"));
+    public int hit;
     private SubmarinePlayer mySubmarine;
     private ArrayList<AbstractGameObject> gameObjects;
     private int enemyNums = Integer.parseInt(PropertyMgr.getConfig("initEnemyNum"));
     private int hitTOWin = Integer.parseInt(PropertyMgr.getConfig("HitTOWin"));
-    public int defaultWeaponNum = Integer.parseInt(PropertyMgr.getConfig("defaultWeaponNum"));
     private SeaGrassFix grassfix;
     private SeaGrassFloating grassFloating;
-    public int hit;
     private CollisionChain collisionChain;
-
-    private static Random random = new Random();
 
     private NavalFrame(String title) {
         this.setTitle(title);
@@ -70,35 +72,21 @@ public class NavalFrame extends Frame {
     public void paint(Graphics g) {
         // paint
         try {
-            if (!mySubmarine.isAlive() || (defaultWeaponNum <= 0 && hit < hitTOWin) ) {
-                g.setColor(Color.red);
-                g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
-                g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
-                return;
-            }
-
-            if (hit >= hitTOWin && defaultWeaponNum > 0) {
-                g.setColor(Color.magenta);
-                g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
-                g.drawString(PropertyMgr.getConfig("win"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
-                return;
-            }
-
-            g.setColor(Color.magenta);
-            g.drawString(hit + " hits", FRAME_LOCATION_X + MARGIN_X, FRAME_LOCATION_Y + MARGIN_Y);
-            g.drawString(defaultWeaponNum + " bubbles left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.3));
-            g.drawString(mySubmarine.getLives() + " lives left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.7));
+            if (!checkStatus(g)) return;
 
             for (int i = 0; i < gameObjects.size(); i++) {
+                // remove death
                 if (!gameObjects.get(i).isAlive()) {
                     gameObjects.remove(i);
                     break;
                 }
 
+                // collision check
                 for (int j = 0; j < gameObjects.size(); j++) {
                     collisionChain.Collision(gameObjects.get(j), gameObjects.get(i));
                 }
 
+                // paint
                 if (gameObjects.get(i).isAlive()) {
                     gameObjects.get(i).paint(g);
                 }
@@ -108,7 +96,7 @@ public class NavalFrame extends Frame {
             e.printStackTrace();
         }
         // remove death
-        gameObjects.removeIf(s -> !s.isAlive());
+        // gameObjects.removeIf(s -> !s.isAlive());
 
         // randomly add enemy
         if (random.nextInt(100) > 94) {
@@ -117,6 +105,30 @@ public class NavalFrame extends Frame {
                 gameObjects.add(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X * 2, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
             }
         }
+    }
+
+    // check status (win, lose, continue) and write text
+    private boolean checkStatus(Graphics g) {
+        if (!mySubmarine.isAlive() || (defaultWeaponNum <= 0 && hit < hitTOWin) ) {
+            g.setColor(Color.red);
+            g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
+            g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            return false;
+        }
+
+        if (hit >= hitTOWin && defaultWeaponNum > 0) {
+            g.setColor(Color.magenta);
+            g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
+            g.drawString(PropertyMgr.getConfig("win"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            return false;
+        }
+
+        g.setColor(Color.magenta);
+        g.drawString(hit + " hits", FRAME_LOCATION_X + MARGIN_X, FRAME_LOCATION_Y + MARGIN_Y);
+        g.drawString(defaultWeaponNum + " bubbles left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.3));
+        g.drawString(mySubmarine.getLives() + " lives left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.7));
+
+        return true;
     }
 
     public void addGameObject(AbstractGameObject item) {

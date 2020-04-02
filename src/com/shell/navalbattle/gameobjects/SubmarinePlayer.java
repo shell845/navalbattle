@@ -1,8 +1,11 @@
-package com.shell.navalbattle;
+package com.shell.navalbattle.gameobjects;
 
+import com.shell.navalbattle.*;
 import com.shell.navalbattle.model.DefaultWeaponModel;
 import com.shell.navalbattle.model.DoubleWeaponModel;
 import com.shell.navalbattle.model.WeaponModel;
+import com.shell.navalbattle.utils.PropertyMgr;
+import com.shell.navalbattle.utils.ResourceMgr;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
