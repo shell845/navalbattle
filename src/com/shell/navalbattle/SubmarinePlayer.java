@@ -19,6 +19,7 @@ public class SubmarinePlayer extends Submarine {
     public static final int TOP_MARGIN = 20;
     private int xPos, yPos;
     private Directions dir;
+    private Directions currentLR;
     private Groups group;
     private boolean alive;
     private boolean pressL, pressR, pressU, pressD;
@@ -35,6 +36,7 @@ public class SubmarinePlayer extends Submarine {
         this.isMoving = false;
         this.lives = Integer.parseInt(PropertyMgr.getConfig("defaultLives"));
         currImage = ResourceMgr.submarineYellowR;
+        currentLR = d;
 
         /*switch (this.group) {
             case Friend:
@@ -76,21 +78,38 @@ public class SubmarinePlayer extends Submarine {
         return this.lives;
     }
 
+    public Directions getDirection() { return currentLR; }
+
     // paint ship
     public void paint(Graphics g) throws IOException {
         if (!isAlive()) return;
-        if (lives < 3) {
-            if (lives == 2) {
-                currImage = ResourceMgr.submarineYellowRM;
-            } else if (lives == 1) {
-                currImage = ResourceMgr.submarineYellowRS;
-            } else {
-                setAlive(false);
-                return;
-            }
-        }
+        setImage();
         g.drawImage(currImage, xPos, yPos, null);
         move();
+    }
+
+    private void setImage() {
+        if (currentLR == Directions.R) {
+            if (lives >= 6) {
+                currImage = ResourceMgr.submarineYellowR;
+            } else if (lives <= 0) {
+                    setAlive(false);
+                } else if (lives < 3) {
+                    currImage = ResourceMgr.submarineYellowRS;
+                } else {
+                    currImage = ResourceMgr.submarineYellowRM;
+                }
+            } else {
+                if (lives >= 6) {
+                    currImage = ResourceMgr.submarineYellowL;
+                } else if (lives <= 0) {
+                    setAlive(false);
+                } else if (lives < 3) {
+                    currImage = ResourceMgr.submarineYellowLS;
+                } else {
+                    currImage = ResourceMgr.submarineYellowLM;
+                }
+            }
     }
 
     // detect key press
@@ -131,25 +150,30 @@ public class SubmarinePlayer extends Submarine {
                 break;
             case KeyEvent.VK_SPACE:
                 shoot();
-//            case KeyEvent.VK_CONTROL:
-//                doubleShoot();
+                break;
+            case KeyEvent.VK_CONTROL:
+                resetLeftRight();
+                break;
         }
         setDirection();
+    }
+
+    private void resetLeftRight() {
+        if (currentLR == Directions.R) {
+            currentLR = Directions.L;
+            setImage();
+            return;
+        }
+        if (currentLR == Directions.L) {
+            currentLR= Directions.R;
+            setImage();
+            return;
+        }
     }
 
     private Random random = new Random();
     // create weapon
     private void shoot() {
-        /*
-        ClassLoader loader = SubmarinePlayer.class.getClassLoader();
-        WeaponModel model = null;
-        String className = PropertyMgr.getConfig("model");
-        try {
-            Class klass = loader.loadClass("com.shell.navalbattle." + className);
-            model = (WeaponModel) (klass.getDeclaredConstructor().newInstance());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } */
         WeaponModel model = null;
         if (random.nextInt(100) > 65) model = new DoubleWeaponModel();
         else model = new DefaultWeaponModel();

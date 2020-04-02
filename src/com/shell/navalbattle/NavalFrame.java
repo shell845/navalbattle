@@ -29,6 +29,7 @@ public class NavalFrame extends Frame {
     private int hitTOWin = Integer.parseInt(PropertyMgr.getConfig("HitTOWin"));
     public int defaultWeaponNum = Integer.parseInt(PropertyMgr.getConfig("defaultWeaponNum"));
     private SeaGrassFix grassfix;
+    private SeaGrassFloating grassFloating;
     public int hit;
     private CollisionChain collisionChain;
 
@@ -53,9 +54,11 @@ public class NavalFrame extends Frame {
         gameObjects = new ArrayList<>();
 
         grassfix = new SeaGrassFix();
+        grassFloating = new SeaGrassFloating();
         mySubmarine = new SubmarinePlayer(initPosX, initPosY, Directions.R);
         gameObjects.add(grassfix);
         gameObjects.add(mySubmarine);
+        gameObjects.add(grassFloating);
 
         for (int i = 0; i < enemyNums; i++) {
             gameObjects.add(new SubmarineEnemy(FRAME_WIDTH - MARGIN_X * 2, FRAME_HEIGHT * i / 4 + MARGIN_Y, Directions.L));
@@ -84,7 +87,7 @@ public class NavalFrame extends Frame {
             g.setColor(Color.magenta);
             g.drawString(hit + " hits", FRAME_LOCATION_X + MARGIN_X, FRAME_LOCATION_Y + MARGIN_Y);
             g.drawString(defaultWeaponNum + " bubbles left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.3));
-            g.drawString(mySubmarine.getLives() + " lives left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.6));
+            g.drawString(mySubmarine.getLives() + " lives left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.7));
 
             for (int i = 0; i < gameObjects.size(); i++) {
                 if (!gameObjects.get(i).isAlive()) {

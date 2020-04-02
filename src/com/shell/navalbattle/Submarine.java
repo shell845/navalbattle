@@ -20,4 +20,6 @@ public abstract class Submarine extends AbstractGameObject{
      public abstract void setAlive(Boolean status);
 
      public abstract void reduceLives();
+
+     public abstract Directions getDirection();
 }

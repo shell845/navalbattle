@@ -22,8 +22,8 @@ public class SeaGrassFloating extends SeaGrass {
 
     public SeaGrassFloating() {
         currImage = ResourceMgr.seagrassFloat;
-        xPos = Integer.parseInt(PropertyMgr.getConfig("FrameWidth")) / 2;
-        yPos = Integer.parseInt(PropertyMgr.getConfig("FrameHeight")) / 2;
+        xPos = Integer.parseInt(PropertyMgr.getConfig("FrameWidth")) / 3;
+        yPos = Integer.parseInt(PropertyMgr.getConfig("FrameHeight")) / 3 ;
         START = xPos;
         alive = true;
         group = Groups.Enemy;
@@ -55,7 +55,6 @@ public class SeaGrassFloating extends SeaGrass {
     public void paint(Graphics g) throws IOException {
         g.drawImage(currImage, xPos,
                 yPos, null);
-        move();
     }
 
     private void move() {

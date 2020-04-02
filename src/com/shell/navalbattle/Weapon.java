@@ -16,18 +16,21 @@ public class Weapon extends AbstractGameObject {
     private BufferedImage currImage;
     private int speed = Integer.parseInt(PropertyMgr.getConfig("defaultSpeed"));
 
-    public Weapon (int x, int y, Groups g) {
+    public Weapon (int x, int y, Groups g, Directions d) {
         this.xPos = x;
         this.yPos = y;
         this.group = g;
         this.alive = true;
-        if (g == Groups.Enemy) {
-            this.currImage = ResourceMgr.bubbleBlue;
-        } else this.currImage = ResourceMgr.bubbleRainbow;
 
         if (g == Groups.Enemy) {
+            this.currImage = ResourceMgr.bubbleBlue;
             this.dir = Directions.L;
-        } else this.dir = Directions.R;
+        } else {
+            this.currImage = ResourceMgr.bubbleRainbow;
+            if (d == Directions.L) {
+                this.dir = d;
+            } else this.dir = Directions.R;
+        }
     }
 
     public void paint(Graphics g) throws IOException {

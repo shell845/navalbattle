@@ -1,5 +1,9 @@
 package com.shell.navalbattle;
 
+import com.shell.navalbattle.model.DefaultWeaponModel;
+import com.shell.navalbattle.model.DoubleWeaponModel;
+import com.shell.navalbattle.model.WeaponModel;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -60,6 +64,8 @@ public class SubmarineEnemy extends Submarine {
 
     public void reduceLives() { }
 
+    public Directions getDirection() { return this.dir; }
+
     // paint ship
     public void paint(Graphics g) throws IOException {
         if (!isAlive()) return;
@@ -69,8 +75,8 @@ public class SubmarineEnemy extends Submarine {
 
     // create weapon
     private void shoot() {
-        Weapon weapon = new Weapon(this.xPos + currImage.getWidth() / 4, this.yPos + currImage.getHeight() / 8, this.group);
-        NavalFrame.MAIN_FRAME.addGameObject(weapon);
+        WeaponModel model = new DefaultWeaponModel();
+        model.shoot(this);
     }
 
     private void move() {
