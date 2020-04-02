@@ -15,6 +15,7 @@ public class ResourceMgr {
     public static BufferedImage submarineDarkBlueR, submarineDarkBlueL;
     public static BufferedImage submarinePinkR, submarinePinkL;
     public static BufferedImage bubbleBlue, bubbleRainbow, bubbleRainbowBig;
+    public static BufferedImage seagrassFix, seagrassFloat;
     public static BufferedImage[] explodes = new BufferedImage[8];
 
 
@@ -40,6 +41,9 @@ public class ResourceMgr {
             bubbleBlue = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bubbleBlue.png"));
             bubbleRainbow = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bubbleRainbow.png"));
             bubbleRainbowBig = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bubbleRainbowBig.png"));
+
+            seagrassFix = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/seagrass.png"));
+            seagrassFloat = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/seagrassFloat.png"));
 
             for(int i = 0; i < explodes.length; i++)
                 explodes[i] = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/e" + (i + 1) + ".png"));

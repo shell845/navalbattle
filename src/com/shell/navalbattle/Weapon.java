@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Weapon {
+public class Weapon extends AbstractGameObject {
     private int xPos, yPos;
     private Groups group;
     private Directions dir;

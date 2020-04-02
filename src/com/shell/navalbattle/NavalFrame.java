@@ -25,10 +25,12 @@ public class NavalFrame extends Frame {
     private ArrayList<SubmarineEnemy> enemies;
     private ArrayList<Weapon> weapons;
     private ArrayList<Explode> explodes;
+    private ArrayList<AbstractGameObject> gameObjects;
     private int enemyNums = Integer.parseInt(PropertyMgr.getConfig("initEnemyNum"));
     public int hit;
     private int hitTOWin = Integer.parseInt(PropertyMgr.getConfig("HitTOWin"));
     public int defaultWeaponNum = Integer.parseInt(PropertyMgr.getConfig("defaultWeaponNum"));
+    private SeaGrassFix grassfix;
 
     private static Random random = new Random();
 
@@ -48,7 +50,7 @@ public class NavalFrame extends Frame {
         int initPosY = Integer.parseInt(PropertyMgr.getConfig("initPosY"));
 
         mySubmarine = new SubmarinePlayer(initPosX, initPosY, Directions.R);
-
+        grassfix = new SeaGrassFix();
         weapons = new ArrayList<>();
         enemies = new ArrayList<>();
         explodes = new ArrayList<>();
@@ -63,14 +65,14 @@ public class NavalFrame extends Frame {
     public void paint(Graphics g) {
         // paint
         try {
-            if (hit >= hitTOWin && defaultWeaponNum >= 0) {
+            if (hit >= hitTOWin && defaultWeaponNum > 0) {
                 g.setColor(Color.magenta);
                 g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
                 g.drawString(PropertyMgr.getConfig("win"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
                 return;
             }
 
-            if (defaultWeaponNum < 0 && hit < hitTOWin ) {
+            if (defaultWeaponNum <= 0 && hit < hitTOWin ) {
                 g.setColor(Color.red);
                 g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
                 g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
@@ -81,7 +83,9 @@ public class NavalFrame extends Frame {
             g.drawString(hit + " hits", FRAME_LOCATION_X + MARGIN_X, FRAME_LOCATION_Y + MARGIN_Y);
             g.drawString(defaultWeaponNum + " bubble left", FRAME_LOCATION_X + MARGIN_X, (int) (FRAME_LOCATION_Y + MARGIN_Y * 1.3));
 
+
             mySubmarine.paint(g);
+            grassfix.paint(g);
 
             for (SubmarineEnemy enemy : enemies) {
                 enemy.paint(g);

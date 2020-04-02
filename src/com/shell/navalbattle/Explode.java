@@ -9,7 +9,7 @@ import java.util.Random;
  * @author YC 03/29/2020
  */
 
-public class Explode {
+public class Explode extends AbstractGameObject {
     private int xPos, yPos;
     private boolean alive;
     private BufferedImage[] currImages;

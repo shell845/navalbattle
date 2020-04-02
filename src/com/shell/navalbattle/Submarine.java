@@ -4,18 +4,18 @@
 
 package com.shell.navalbattle;
 
-public interface Submarine {
-     int getPosX();
+public abstract class Submarine extends AbstractGameObject{
+     public abstract int getPosX();
 
-     int getPosY();
+     public abstract int getPosY();
 
-     int getWidth();
+     public abstract int getWidth();
 
-     int getHeight();
+     public abstract int getHeight();
 
-     Groups getGroup();
+     public abstract Groups getGroup();
 
-     boolean isAlive();
+     public abstract boolean isAlive();
 
-     void setAlive(Boolean status);
+     public abstract void setAlive(Boolean status);
 }

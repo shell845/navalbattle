@@ -9,7 +9,7 @@ import java.util.Random;
  * @author YC 03/29/2020
  */
 
-public class SubmarineEnemy implements Submarine {
+public class SubmarineEnemy extends Submarine {
     public static final int SPEED = 10;
     public static final int TOP_MARGIN = 20;
     private int xPos, yPos;
@@ -50,11 +50,9 @@ public class SubmarineEnemy implements Submarine {
 
     public int getHeight() { return this.currImage.getHeight(); }
 
-    public Groups getGroup() { return this.group; };
+    public Groups getGroup() { return this.group; }
 
-    public boolean isAlive() {
-        return this.alive;
-    }
+    public boolean isAlive() { return this.alive; }
 
     public void setAlive(Boolean status) {
         this.alive = status;
@@ -64,21 +62,6 @@ public class SubmarineEnemy implements Submarine {
     public void paint(Graphics g) throws IOException {
         if (!isAlive()) return;
         g.drawImage(currImage, xPos, yPos, null);
-        /*switch (this.dir) {
-            case L:
-                g.drawImage(ResourceMgr.submarineRedL, xPos, yPos, null);
-                currImage = ResourceMgr.submarineRedL;
-                break;
-            case R:
-                g.drawImage(ResourceMgr.submarineRedR, xPos, yPos, null);
-                currImage = ResourceMgr.submarineRedR;
-                break;
-            case U:
-            case D:
-                g.drawImage(currImage, xPos, yPos, null);
-                break;
-        }*/
-
         move();
     }
 
@@ -113,7 +96,7 @@ public class SubmarineEnemy implements Submarine {
             setRandomDirection();
         }
 
-        if (random.nextInt(100) >= 90) {
+        if (random.nextInt(100) >= 95) {
             shoot();
         }
     }
