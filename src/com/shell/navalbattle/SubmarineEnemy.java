@@ -58,6 +58,8 @@ public class SubmarineEnemy extends Submarine {
         this.alive = status;
     }
 
+    public void reduceLives() { }
+
     // paint ship
     public void paint(Graphics g) throws IOException {
         if (!isAlive()) return;
@@ -68,7 +70,7 @@ public class SubmarineEnemy extends Submarine {
     // create weapon
     private void shoot() {
         Weapon weapon = new Weapon(this.xPos + currImage.getWidth() / 4, this.yPos + currImage.getHeight() / 8, this.group);
-        NavalFrame.MAIN_FRAME.addWeapon(weapon);
+        NavalFrame.MAIN_FRAME.addGameObject(weapon);
     }
 
     private void move() {
@@ -96,7 +98,7 @@ public class SubmarineEnemy extends Submarine {
             setRandomDirection();
         }
 
-        if (random.nextInt(100) >= 95) {
+        if (random.nextInt(100) > 95) {
             shoot();
         }
     }

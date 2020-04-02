@@ -32,6 +32,16 @@ public class Explode extends AbstractGameObject {
         return this.yPos;
     }
 
+    @Override
+    public int getWidth() {
+        return 0;
+    }
+
+    @Override
+    public int getHeight() {
+        return 0;
+    }
+
     public boolean isAlive() {
         return this.alive;
     }
@@ -40,14 +50,16 @@ public class Explode extends AbstractGameObject {
         this.alive = status;
     }
 
+    public Groups getGroup() { return Groups.Neutral; }
+
     // paint ship
     public void paint(Graphics g) throws IOException {
         if (!isAlive()) return;
         g.drawImage(currImages[num], xPos, yPos - currImages[num].getHeight() / 2, null);
         num++;
-        if (num > 7) {
-            num = 1;
+        if (num >= 6) {
             setAlive(false);
+            num = 1;
         }
     }
 }

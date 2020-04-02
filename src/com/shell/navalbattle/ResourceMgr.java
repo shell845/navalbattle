@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class ResourceMgr {
-    public static BufferedImage submarineYellowL, submarineYellowU, submarineYellowR, submarineYellowD;
+    public static BufferedImage submarineYellowL, submarineYellowU, submarineYellowR, submarineYellowD, submarineYellowRM, submarineYellowRS;
     public static BufferedImage submarineGreenL, submarineGreenU, submarineGreenR, submarineGreenD;
     public static BufferedImage submarineDarkBlueR, submarineDarkBlueL;
     public static BufferedImage submarinePinkR, submarinePinkL;
@@ -26,6 +26,8 @@ public class ResourceMgr {
             submarineYellowD = ImageUtil.rotateImage(submarineYellowR, -90);
             submarineYellowU = ImageUtil.rotateImage(submarineYellowR, 90);
             submarineYellowL = ImageUtil.rotateImage(submarineYellowR, -180);
+            submarineYellowRM = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/submarineYellowM.png"));
+            submarineYellowRS = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/submarineYellowS.png"));
 
             submarineGreenR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/submarineGreen.png"));
             submarineGreenD = ImageUtil.rotateImage(submarineGreenR, -90);

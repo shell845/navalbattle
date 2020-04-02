@@ -1,15 +1,10 @@
 /**
- * @author YC 04/01/2020
+ * @author YC 04/02/2020
  */
 
 package com.shell.navalbattle;
 
-import java.awt.*;
-import java.io.IOException;
-
-public abstract class AbstractGameObject {
-    public abstract void paint(Graphics g) throws IOException;
-
+public abstract class SeaGrass extends AbstractGameObject {
     public abstract int getPosX();
 
     public abstract int getPosY();
@@ -23,6 +18,4 @@ public abstract class AbstractGameObject {
     public abstract boolean isAlive();
 
     public abstract void setAlive(Boolean status);
-
-    // public abstract void com.shell.navalbattle.collision(AbstractGameObject item);
 }

@@ -43,6 +43,10 @@ public class Weapon extends AbstractGameObject {
         return this.yPos;
     }
 
+    public int getWidth() { return this.currImage.getWidth(); }
+
+    public int getHeight() { return this.currImage.getHeight(); }
+
     public boolean isAlive() {
         return this.alive;
     }
@@ -59,7 +63,11 @@ public class Weapon extends AbstractGameObject {
         this.currImage = img;
     }
 
-    public void collideWithShip(SubmarineEnemy submarine) {
+    public Groups getGroup() {
+        return this.group;
+    }
+
+    /*public void collideWithShip(SubmarineEnemy submarine) {
         if (!submarine.isAlive() || this.group == submarine.getGroup()) return;
 
         Rectangle rectWeapon = new Rectangle(xPos, yPos, currImage.getWidth(), currImage.getHeight());
@@ -73,7 +81,7 @@ public class Weapon extends AbstractGameObject {
                     new Explode(submarine.getPosX() - submarine.getWidth() / 2,
                             submarine.getPosY() + submarine.getHeight() / 2));
         }
-    }
+    }*/
 
     private void move() {
         // check if out of boundary

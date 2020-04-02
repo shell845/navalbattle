@@ -1,8 +1,8 @@
 package com.shell.navalbattle;
 
-import com.shell.navalbattle.Model.DefaultWeaponModel;
-import com.shell.navalbattle.Model.DoubleWeaponModel;
-import com.shell.navalbattle.Model.WeaponModel;
+import com.shell.navalbattle.model.DefaultWeaponModel;
+import com.shell.navalbattle.model.DoubleWeaponModel;
+import com.shell.navalbattle.model.WeaponModel;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -24,6 +24,7 @@ public class SubmarinePlayer extends Submarine {
     private boolean pressL, pressR, pressU, pressD;
     private boolean isMoving;
     private BufferedImage currImage;
+    private int lives;
 
     public SubmarinePlayer(int x, int y, Directions d) {
         this.xPos = x;
@@ -32,6 +33,7 @@ public class SubmarinePlayer extends Submarine {
         this.group = Groups.Friend;
         this.alive = true;
         this.isMoving = false;
+        this.lives = Integer.parseInt(PropertyMgr.getConfig("defaultLives"));
         currImage = ResourceMgr.submarineYellowR;
 
         /*switch (this.group) {
@@ -66,25 +68,28 @@ public class SubmarinePlayer extends Submarine {
         this.alive = status;
     }
 
+    public void reduceLives() {
+        this.lives--;
+    }
+
+    public int getLives() {
+        return this.lives;
+    }
+
     // paint ship
     public void paint(Graphics g) throws IOException {
         if (!isAlive()) return;
+        if (lives < 3) {
+            if (lives == 2) {
+                currImage = ResourceMgr.submarineYellowRM;
+            } else if (lives == 1) {
+                currImage = ResourceMgr.submarineYellowRS;
+            } else {
+                setAlive(false);
+                return;
+            }
+        }
         g.drawImage(currImage, xPos, yPos, null);
-        /*switch (this.dir) {
-            case L:
-                g.drawImage(ResourceMgr.submarineRedL, xPos, yPos, null);
-                currImage = ResourceMgr.submarineRedL;
-                break;
-            case R:
-                g.drawImage(ResourceMgr.submarineRedR, xPos, yPos, null);
-                currImage = ResourceMgr.submarineRedR;
-                break;
-            case U:
-            case D:
-                g.drawImage(currImage, xPos, yPos, null);
-                break;
-        }*/
-
         move();
     }
 
