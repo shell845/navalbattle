@@ -1,15 +1,10 @@
 package com.shell.navalbattle;
 
-import com.shell.navalbattle.collision.CollisionChain;
-import com.shell.navalbattle.gameobjects.*;
 import com.shell.navalbattle.utils.PropertyMgr;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author YC 03/29/2020
@@ -66,6 +61,9 @@ public class NavalFrame extends Frame {
     private class NavalKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
+            if (gameModel.gameOver && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                gameModel = GameModel.getNewInstance();
+            }
             gameModel.mySubmarine.keyPressed(e);
         }
 

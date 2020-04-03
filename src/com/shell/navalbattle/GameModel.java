@@ -15,7 +15,7 @@ import java.util.Random;
 
 /** MVC - model, view, controller */
 public class GameModel {
-    private static final GameModel gameModelInstance = new GameModel();
+    private static GameModel gameModelInstance = new GameModel();
 
     public static final int FRAME_LOCATION_X = 0; //Integer.parseInt(PropertyMgr.getConfig("FrameLocationX"));
     public static final int FRAME_LOCATION_Y = 0; //Integer.parseInt(PropertyMgr.getConfig("FrameLocationY"));
@@ -32,6 +32,7 @@ public class GameModel {
 
     public SubmarinePlayer mySubmarine;
     private ArrayList<AbstractGameObject> gameObjects;
+    public boolean gameOver;
 
     private CollisionChain collisionChain;
     private static Random random = new Random();
@@ -39,8 +40,14 @@ public class GameModel {
     private GameModel() {
         this.hit = 0;
         this.collisionChain = new CollisionChain();
+        this.gameOver = false;
 
         initiateFrame();
+    }
+
+    public static GameModel getNewInstance() {
+        gameModelInstance = new GameModel();
+        return gameModelInstance;
     }
 
     public static GameModel getInstance() {
@@ -68,7 +75,10 @@ public class GameModel {
 
     public void paint(Graphics g) {
         try {
-            if (!checkStatus(g)) return;
+            if (!checkStatus(g)) {
+                this.gameOver = true;
+                return;
+            }
 
             for (int i = 0; i < gameObjects.size(); i++) {
                 // remove death
@@ -109,6 +119,8 @@ public class GameModel {
             g.setColor(Color.red);
             g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
             g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 30));
+            g.drawString(PropertyMgr.getConfig("continue"), FRAME_LOCATION_X + FRAME_WIDTH / 5, FRAME_LOCATION_Y + FRAME_HEIGHT * 2 / 3);
             return false;
         }
 
@@ -116,6 +128,8 @@ public class GameModel {
             g.setColor(Color.magenta);
             g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
             g.drawString(PropertyMgr.getConfig("win"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 30));
+            g.drawString(PropertyMgr.getConfig("continue"), FRAME_LOCATION_X + FRAME_WIDTH / 5, FRAME_LOCATION_Y + FRAME_HEIGHT * 2 / 3);
             return false;
         }
 
