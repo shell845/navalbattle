@@ -2,7 +2,7 @@
  * @author YC 03/30/2020
  */
 
-package com.shell.navalbattle.model;
+package com.shell.navalbattle.weaponmode;
 
 import com.shell.navalbattle.*;
 import com.shell.navalbattle.gameobjects.Submarine;

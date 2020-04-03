@@ -1,8 +1,8 @@
 package com.shell.navalbattle.gameobjects;
 
 import com.shell.navalbattle.NavalFrame;
-import com.shell.navalbattle.model.DefaultWeaponModel;
-import com.shell.navalbattle.model.WeaponModel;
+import com.shell.navalbattle.weaponmode.DefaultWeaponModel;
+import com.shell.navalbattle.weaponmode.WeaponModel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -65,6 +65,8 @@ public class SubmarineEnemy extends Submarine {
     public void reduceLives() { }
 
     public Directions getDirection() { return this.dir; }
+
+    public void moveBack() { move(); }
 
     // paint ship
     public void paint(Graphics g) throws IOException {

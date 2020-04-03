@@ -1,9 +1,9 @@
 package com.shell.navalbattle.gameobjects;
 
 import com.shell.navalbattle.*;
-import com.shell.navalbattle.model.DefaultWeaponModel;
-import com.shell.navalbattle.model.DoubleWeaponModel;
-import com.shell.navalbattle.model.WeaponModel;
+import com.shell.navalbattle.weaponmode.DefaultWeaponModel;
+import com.shell.navalbattle.weaponmode.DoubleWeaponModel;
+import com.shell.navalbattle.weaponmode.WeaponModel;
 import com.shell.navalbattle.utils.PropertyMgr;
 import com.shell.navalbattle.utils.ResourceMgr;
 
@@ -82,6 +82,8 @@ public class SubmarinePlayer extends Submarine {
     }
 
     public Directions getDirection() { return currentLR; }
+
+    public void moveBack() { }
 
     // paint ship
     public void paint(Graphics g) throws IOException {

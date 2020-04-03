@@ -5,6 +5,7 @@
 package com.shell.navalbattle.collision;
 
 import com.shell.navalbattle.gameobjects.AbstractGameObject;
+import com.shell.navalbattle.gameobjects.Groups;
 import com.shell.navalbattle.gameobjects.SeaGrass;
 import com.shell.navalbattle.gameobjects.Weapon;
 
@@ -24,7 +25,7 @@ public class WeaponSeagrassHit implements Collider {
 
     public boolean collideWithSeagrass(Weapon w, SeaGrass s) {
         if (!s.isAlive() && !w.isAlive()) return false;
-        if (!s.isAlive() || !w.isAlive()) return true;
+        if (!s.isAlive() || !w.isAlive() || w.getGroup() == Groups.Friend) return true;
 
         Rectangle rectWeapon = new Rectangle(w.getPosX(), w.getPosY(), w.getWidth(), w.getHeight());
         Rectangle rectGrass = new Rectangle(s.getPosX(), s.getPosY(), s.getWidth(), s.getHeight());
