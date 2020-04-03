@@ -17,6 +17,6 @@ public class DoubleWeaponModel implements WeaponModel {
         Weapon weapon1 = new Weapon(s.getPosX() + s.getWidth() / 2, s.getPosY() - s.getHeight() / 10, s.getGroup(), s.getDirection());
         weapon1.setSpeed(Integer.parseInt(PropertyMgr.getConfig("doubleSpeed")));
         weapon1.setImage(ResourceMgr.bubbleRainbowBig);
-        NavalFrame.MAIN_FRAME.addGameObject(weapon1);
+        GameModel.getInstance().addGameObject(weapon1);
     }
 }

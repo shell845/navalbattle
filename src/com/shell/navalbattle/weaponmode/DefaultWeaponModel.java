@@ -13,6 +13,6 @@ public class DefaultWeaponModel implements WeaponModel {
     @Override
     public void shoot(Submarine s) {
         Weapon weapon = new Weapon(s.getPosX() + s.getWidth() / 2, s.getPosY(), s.getGroup(), s.getDirection());
-        NavalFrame.MAIN_FRAME.addGameObject(weapon);
+        GameModel.getInstance().addGameObject(weapon);
     }
 }

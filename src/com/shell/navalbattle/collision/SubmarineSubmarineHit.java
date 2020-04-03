@@ -34,13 +34,13 @@ public class SubmarineSubmarineHit implements Collider {
             if (s1.getGroup() == Groups.Friend) {
                 s1.reduceLives();
                 s2.setAlive(false);
-                NavalFrame.MAIN_FRAME.addGameObject(
+                GameModel.getInstance().addGameObject(
                         new Explode(s2.getPosX() + s2.getWidth() / 2,
                                 s2.getPosY() + s2.getHeight() / 2));
             } else {
                 s2.reduceLives();
                 s1.setAlive(false);
-                NavalFrame.MAIN_FRAME.addGameObject(
+                GameModel.getInstance().addGameObject(
                         new Explode(s1.getPosX() + s1.getWidth() / 2,
                                 s1.getPosY() + s1.getHeight() / 2));
             }

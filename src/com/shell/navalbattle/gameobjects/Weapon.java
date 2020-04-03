@@ -74,22 +74,6 @@ public class Weapon extends AbstractGameObject {
         return this.group;
     }
 
-    /*public void collideWithShip(SubmarineEnemy submarine) {
-        if (!submarine.isAlive() || this.group == submarine.getGroup()) return;
-
-        Rectangle rectWeapon = new Rectangle(xPos, yPos, currImage.getWidth(), currImage.getHeight());
-        Rectangle rectShip = new Rectangle(submarine.getPosX() + submarine.getHeight() / 3,
-                submarine.getPosY(), submarine.getWidth(), submarine.getHeight());
-        if (rectShip.intersects(rectWeapon)) {
-            NavalFrame.MAIN_FRAME.hit++;
-            this.setAlive(false);
-            submarine.setAlive(false);
-            NavalFrame.MAIN_FRAME.addExplode(
-                    new Explode(submarine.getPosX() - submarine.getWidth() / 2,
-                            submarine.getPosY() + submarine.getHeight() / 2));
-        }
-    }*/
-
     private void move() {
         // check if out of boundary
         boundaryCheck();

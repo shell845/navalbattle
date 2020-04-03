@@ -183,7 +183,7 @@ public class SubmarinePlayer extends Submarine {
         if (random.nextInt(100) > 65) model = new DoubleWeaponModel();
         else model = new DefaultWeaponModel();
         model.shoot(this);
-        NavalFrame.MAIN_FRAME.defaultWeaponNum--;
+        GameModel.getInstance().defaultWeaponNum--;
     }
 
     private void setDirection() {

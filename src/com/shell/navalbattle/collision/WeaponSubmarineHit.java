@@ -32,8 +32,8 @@ public class WeaponSubmarineHit implements Collider {
             w.setAlive(false);
             if (s.getGroup() == Groups.Enemy) {
                 s.setAlive(false);
-                NavalFrame.MAIN_FRAME.hit++;
-                NavalFrame.MAIN_FRAME.addGameObject(
+                GameModel.getInstance().hit++;
+                GameModel.getInstance().addGameObject(
                         new Explode(s.getPosX() + s.getWidth() / 2,
                                 s.getPosY() + s.getHeight() / 2));
             } else if (s.getGroup() == Groups.Friend) {
