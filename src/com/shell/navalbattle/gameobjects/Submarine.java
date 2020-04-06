@@ -4,6 +4,8 @@
 
 package com.shell.navalbattle.gameobjects;
 
+import java.util.UUID;
+
 public abstract class Submarine extends AbstractGameObject {
      public abstract int getPosX();
 
@@ -24,4 +26,6 @@ public abstract class Submarine extends AbstractGameObject {
      public abstract Directions getDirection();
 
      public abstract void moveBack();
+
+     public abstract UUID getUUID();
 }

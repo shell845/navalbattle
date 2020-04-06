@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author YC 03/29/2020
@@ -29,6 +30,7 @@ public class SubmarinePlayer extends Submarine {
     private boolean isMoving;
     private BufferedImage currImage;
     private int lives;
+    private UUID id;
 
     public SubmarinePlayer(int x, int y, Directions d) {
         this.xPos = x;
@@ -40,6 +42,7 @@ public class SubmarinePlayer extends Submarine {
         this.lives = Integer.parseInt(PropertyMgr.getConfig("defaultLives"));
         currImage = ResourceMgr.submarineYellowR;
         currentLR = d;
+        this.id = UUID.randomUUID();
 
         /*switch (this.group) {
             case Friend:
@@ -84,6 +87,11 @@ public class SubmarinePlayer extends Submarine {
     public Directions getDirection() { return currentLR; }
 
     public void moveBack() { }
+
+    @Override
+    public UUID getUUID() {
+        return this.id;
+    }
 
     // paint ship
     public void paint(Graphics g) throws IOException {

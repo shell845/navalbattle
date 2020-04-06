@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.UUID;
 
 /** MVC - model, view, controller */
 public class GameModel {
@@ -147,5 +148,20 @@ public class GameModel {
 
     public void addGameObject(AbstractGameObject item) {
         gameObjects.add(item);
+    }
+
+    public SubmarinePlayer getMySubmarine() {
+        return this.mySubmarine;
+    }
+
+    public Submarine findSubmarineByUUID(UUID id) {
+        for(AbstractGameObject o : gameObjects) {
+            if(o instanceof Submarine) {
+                Submarine s = (Submarine)o;
+                if(id.equals(s.getUUID())) return s;
+            }
+        }
+
+        return null;
     }
 }

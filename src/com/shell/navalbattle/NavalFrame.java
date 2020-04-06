@@ -40,6 +40,10 @@ public class NavalFrame extends Frame {
 
     }
 
+    public GameModel getGameModel() {
+        return this.gameModel;
+    }
+
     // cache buffer to solve flashing display problem
     Image offScreenImage = null;
 

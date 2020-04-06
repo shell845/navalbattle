@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author YC 03/29/2020
@@ -22,6 +23,7 @@ public class SubmarineEnemy extends Submarine {
     private boolean alive;
     private boolean isMoving;
     private BufferedImage currImage;
+    private UUID id;
 
     public SubmarineEnemy(int x, int y, Directions d) {
         this.xPos = x;
@@ -30,6 +32,7 @@ public class SubmarineEnemy extends Submarine {
         this.group = Groups.Enemy;
         this.alive = true;
         this.isMoving = true;
+        this.id = UUID.randomUUID();
 
         currImage = Submarines.getRandomSubmarine();
         /*switch (this.group) {
@@ -67,6 +70,11 @@ public class SubmarineEnemy extends Submarine {
     public Directions getDirection() { return this.dir; }
 
     public void moveBack() { move(); }
+
+    @Override
+    public UUID getUUID() {
+        return this.id;
+    }
 
     // paint ship
     public void paint(Graphics g) throws IOException {
