@@ -1,5 +1,6 @@
 package com.shell.navalbattle;
 
+import com.shell.navalbattle.netty.Client;
 import com.shell.navalbattle.utils.Audio;
 
 /**
@@ -10,8 +11,9 @@ public class Main {
     public static void main(String[] args) {
         NavalFrame.MAIN_FRAME.setVisible(true);
 
-        new Thread(()->new Audio("audios/background.wav").loop()).start();
+        // new Thread(()->new Audio("audios/background.wav").loop()).start();
 
+        // new Thread(() -> {
         while (true) {
             try {
                 //TimeUnit.MICROSECONDS.sleep(30);
@@ -21,5 +23,8 @@ public class Main {
             }
             NavalFrame.MAIN_FRAME.repaint();
         }
+        // }).start();
+
+        // Client.client_instance.connect();
     }
 }

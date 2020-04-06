@@ -154,10 +154,10 @@ public class GameModel {
         return this.mySubmarine;
     }
 
-    public Submarine findSubmarineByUUID(UUID id) {
+    public SubmarinePlayer findSubmarineByUUID(UUID id) {
         for(AbstractGameObject o : gameObjects) {
-            if(o instanceof Submarine) {
-                Submarine s = (Submarine)o;
+            if(o instanceof SubmarinePlayer) {
+                SubmarinePlayer s = (SubmarinePlayer)o;
                 if(id.equals(s.getUUID())) return s;
             }
         }

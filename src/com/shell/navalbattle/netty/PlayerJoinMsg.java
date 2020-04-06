@@ -132,7 +132,7 @@ public class PlayerJoinMsg extends Msg {
 
     @Override
     public String toString() {
-        return "TankJoinMsg{" +
+        return "PlayerJoinMsg{" +
                 "x=" + x +
                 ", y=" + y +
                 ", dir=" + dir +
