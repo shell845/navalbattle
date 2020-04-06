@@ -117,8 +117,12 @@ public class GameModel {
     private boolean checkStatus(Graphics g) {
         if (!mySubmarine.isAlive() || (defaultWeaponNum <= 0 && hit < hitTOWin) ) {
             g.setColor(Color.red);
-            g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 80));
-            g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 60));
+            if (!mySubmarine.isAlive()) {
+                g.drawString(PropertyMgr.getConfig("die"), FRAME_LOCATION_X + FRAME_WIDTH / 4, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            } else {
+                g.drawString(PropertyMgr.getConfig("lose"), FRAME_LOCATION_X + FRAME_WIDTH / 8, FRAME_LOCATION_Y + FRAME_HEIGHT / 2);
+            }
             g.setFont(new Font(PropertyMgr.getConfig("Font"), Font.PLAIN, 30));
             g.drawString(PropertyMgr.getConfig("continue"), FRAME_LOCATION_X + FRAME_WIDTH / 5, FRAME_LOCATION_Y + FRAME_HEIGHT * 2 / 3);
             return false;

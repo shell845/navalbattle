@@ -156,7 +156,7 @@ public class SubmarinePlayer extends Submarine {
             case KeyEvent.VK_SPACE:
                 shoot();
                 break;
-            case KeyEvent.VK_CONTROL:
+            case KeyEvent.VK_R:
                 resetLeftRight();
                 break;
         }

@@ -15,7 +15,8 @@ public class ImageTest {
     @Test
     public void testLoadImage() {
         try {
-            BufferedImage ship = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/submarineRed.png"));
+            System.out.println(System.getProperty("user.dir"));
+            BufferedImage ship = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("../bubbleBlue.png"));
             ship = rotateImage(ship, 90);
             assertNotNull(ship);
         } catch (IOException e) {
